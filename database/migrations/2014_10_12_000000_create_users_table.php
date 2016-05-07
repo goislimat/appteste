@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('user')->nullable()->unique()->index();
             $table->smallInteger('type');
             $table->string('email')->unique();
-            $table->integer('year');
+            $table->integer('ingress_year')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

@@ -1,6 +1,6 @@
 <?php
 
-namespace Projeto;
+namespace Projeto\Entities;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -12,7 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'user', 'type', 'year', 'email', 'password',
+        'name', 'user', 'type', 'ingress_year', 'email', 'password',
     ];
 
     /**

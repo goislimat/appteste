@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use Projeto\Http\Requests;
 
-use Projeto\User;
+use Projeto\Entities\User;
 
 class UserController extends Controller
 {
