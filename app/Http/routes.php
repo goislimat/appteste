@@ -17,3 +17,9 @@ Route::get('/', function () {
 
 Route::get('user/create', ['uses' => 'UserController@create', 'as' => 'user.create']);
 Route::post('user', ['uses' => 'UserController@store', 'as' => 'user.store']);
+
+Route::get('course/create', ['uses' => 'CourseController@create', 'as' => 'course.create']);
+Route::post('course', ['uses' => 'CourseController@store', 'as' => 'course.store']);
+
+Route::get('subject/create', ['uses' => 'SubjectController@create', 'as' => 'subject.create']);
+Route::post('subject', ['uses' => 'SubjectController@store', 'as' => 'subject.store']);

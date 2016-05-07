@@ -7,9 +7,32 @@ use Illuminate\Http\Request;
 use Projeto\Http\Requests;
 
 use Projeto\Entities\User;
+use Projeto\Repositories\UserRepository;
+use Projeto\Services\UserService;
 
 class UserController extends Controller
 {
+
+    /**
+     * @var UserRepository
+     */
+    private $repository;
+    /**
+     * @var UserService
+     */
+    private $service;
+
+    /**
+     * UserController constructor.
+     * @param UserRepository $repository
+     * @param UserService $service
+     */
+    public function __construct(UserRepository $repository, UserService $service)
+    {
+        $this->repository = $repository;
+        $this->service = $service;
+    }
+    
     public function create()
     {
         return view('user.create');
@@ -17,27 +40,7 @@ class UserController extends Controller
     
     public function store(Request $request)
     {
-        $user = $request->all();
-        
-        $password = str_random(8);
-        $user['password'] = $password;
-        
-        $user = User::create($user);
-        
-        if($user->type == 1)
-        {
-            $user->user = 'ADS' . $user->year . str_pad($user->id, 5, '0', STR_PAD_LEFT);
-        }
-        else
-        {
-            $user->user = 'PROF' . $user->year . str_pad($user->id, 4, '0', STR_PAD_LEFT);
-        }
-        
-        $user->save();
-        
-        //enviar um email para $user-email com $user->user e $password
-        //dispara mensagem de sucesso
-        return $user;
+        return $this->service->store($request->all());
     }
     
     public function show($id)
