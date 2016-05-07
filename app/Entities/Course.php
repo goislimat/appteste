@@ -16,4 +16,23 @@ class Course extends Model implements Transformable
 		'abbr',
 	];
 
+	/**
+	* Get the relationship users array
+	*
+	* return User::class
+	*/
+	public function users()
+	{
+		return $this->hasMany(User::class);
+	}
+	
+	/**
+	* Get the relationship subjects array
+	*
+	* return Subject::class
+	*/
+	public function subjects()
+	{
+		return $this->hasMany(Subject::class);
+	}
 }

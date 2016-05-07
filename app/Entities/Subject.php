@@ -16,4 +16,13 @@ class Subject extends Model implements Transformable
 		'semester',
 	];
 
+	/**
+	* Get the course attached to the subject
+	* 
+	* return Course::class
+	*/
+	public function course()
+	{
+		return $this->belongsTo(Course::class);
+	}
 }

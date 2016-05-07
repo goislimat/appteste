@@ -23,4 +23,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    /**
+    * Get the course attached to the user_error
+    *
+    * return Course::class
+    */
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
 }

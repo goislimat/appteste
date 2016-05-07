@@ -39,7 +39,9 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        //
+        $subjects = $this->repository->all();
+        
+        return view('subject.index', compact('subjects'));
     }
 
     /**
