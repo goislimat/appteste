@@ -31,6 +31,11 @@ class UserService
         $password = str_random(8);
         $user['password'] = $password;
         
+        if($user['course_id'] ==  '')
+        {
+            $user['course_id'] = null;
+        } 
+        
         $user = $this->repository->create($user);
         
         $user->user = $this->getPrefix($user->type) . $user->ingress_year . str_pad($user->id, 6, '0', STR_PAD_LEFT);

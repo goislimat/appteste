@@ -8,6 +8,7 @@ use Projeto\Http\Requests;
 
 use Projeto\Entities\User;
 use Projeto\Repositories\UserRepository;
+use Projeto\Repositories\CourseRepository;
 use Projeto\Services\UserService;
 
 class UserController extends Controller
@@ -21,21 +22,29 @@ class UserController extends Controller
      * @var UserService
      */
     private $service;
+    /**
+    * @var CourseRepository
+    */
+    private $courseRepository;
 
     /**
      * UserController constructor.
      * @param UserRepository $repository
      * @param UserService $service
+     * @param CourseRepository $courseRepository
      */
-    public function __construct(UserRepository $repository, UserService $service)
+    public function __construct(UserRepository $repository, UserService $service, CourseRepository $courseRepository)
     {
         $this->repository = $repository;
         $this->service = $service;
+        $this->courseRepository = $courseRepository;
     }
     
     public function create()
     {
-        return view('user.create');
+        $courses = ['' => ''] + $this->courseRepository->lists('name', 'id')->all();
+        
+        return view('user.create', compact('courses'));
     }
     
     public function store(Request $request)
