@@ -20,3 +20,5 @@ Route::resource('user', 'UserController');
 Route::resource('course', 'CourseController');
 
 Route::resource('subject', 'SubjectController');
+
+Route::resource('project', 'ProjectController');
