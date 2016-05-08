@@ -15,7 +15,7 @@ class UsersSubjectsTableSeeder extends Seeder
     {
         DB::table('user_subjects')->truncate();
         
-        for($i = 0; $i < 10; $i++)
+        for($i = 0; $i < 20; $i++)
         {
             while(true)
             {
@@ -29,7 +29,7 @@ class UsersSubjectsTableSeeder extends Seeder
             while(true)
             {
                 $subject = Subject::all()->random();
-                if($subject->course_id == $user->course_id)
+                if($subject->course_id == $user->course_id || $user->type == 2)
                 {
                     break;
                 }
