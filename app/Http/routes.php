@@ -15,8 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('user/create', ['uses' => 'UserController@create', 'as' => 'user.create']);
-Route::post('user', ['uses' => 'UserController@store', 'as' => 'user.store']);
+Route::resource('user', 'UserController');
 
 Route::resource('course', 'CourseController');
 

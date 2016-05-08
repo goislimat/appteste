@@ -12,7 +12,7 @@
             {{ Form::text('name', $subject->name, array('class' => 'form-control')) }}
             
             {{ Form::label('course_id', 'Curso:') }}
-            {{ Form::select('course_id', $courses, $subject->course->id, array('class' => 'form-control')) }}
+            {{ Form::select('course_id', $courses, $subject->course_id, array('class' => 'form-control')) }}
             
             {{ Form::label('semester', 'Semestre/Ano:') }}
             {{ Form::number('semester', $subject->semester, array('class' => 'form-control')) }}

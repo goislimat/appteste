@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 
 use Projeto\Http\Requests;
 
-use Projeto\Entities\User;
 use Projeto\Repositories\UserRepository;
 use Projeto\Repositories\CourseRepository;
 use Projeto\Services\UserService;
@@ -40,6 +39,13 @@ class UserController extends Controller
         $this->courseRepository = $courseRepository;
     }
     
+    public function index()
+    {
+        $users = $this->repository->all();
+        
+        return view('user.index', compact('users'));
+    }
+    
     public function create()
     {
         $courses = ['' => ''] + $this->courseRepository->lists('name', 'id')->all();
@@ -49,13 +55,37 @@ class UserController extends Controller
     
     public function store(Request $request)
     {
-        return $this->service->store($request->all());
+        $this->service->store($request->all());
+        
+        return redirect()->route('user.index');
     }
     
     public function show($id)
     {
-        $user = User::find($id);
+        $user = $this->repository->find($id);
         
         return view('user.show', compact('user'));
+    }
+    
+    public function edit($id)
+    {
+        $user = $this->repository->find($id);
+        $courses = ['' => ''] + $this->courseRepository->lists('name', 'id')->all();
+        
+        return view('user.edit', compact('user', 'courses'));
+    }
+    
+    public function update(Request $request, $id)
+    {
+        $this->repository->update($request, $id);
+        
+        return redirect()->route('user.index');
+    }
+    
+    public function destroy($id)
+    {
+        $this->repository->delete($id);
+        
+        return redirect()->route('user.index');
     }
 }
