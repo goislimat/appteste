@@ -36,7 +36,58 @@
             @endif
             </strong>
         </li>
+        @if($user->type == 1)
+        <li class="list-group-item">Curso: <strong>{{ $user->course->name }}</strong></li>
+        @endif
     </ul> 
+    
+    @if($user->type == 1)
+    <div class="disciplinas">    
+        <h4>Disciplinas vinculadas à esse aluno</h4>
+        
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <td>Nome</td>
+                    <td>Semestre/Ano</td>
+                    <td>Período</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($user->subjects as $subject)
+                <tr>
+                    <td>{{ $subject->name }}</td>
+                    <td>{{ $subject->semester }}º</td>
+                    <td>{{ $subject->pivot->year_semester }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+    @elseif($user->type == 2)
+    <div class="disciplinas">    
+        <h4>Disciplinas vinculadas à esse professor</h4>
+        
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <td>Nome</td>
+                    <td>Semestre/Ano</td>
+                    <td>Período</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($user->subjects as $subject)
+                <tr>
+                    <td>{{ $subject->name }}</td>
+                    <td>{{ $subject->semester }}º</td>
+                    <td>{{ $subject->pivot->year_semester }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+    @endif
     
     <div class="panel panel-warning">
         <div class="panel-heading">

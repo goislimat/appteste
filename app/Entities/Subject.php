@@ -33,6 +33,6 @@ class Subject extends Model implements Transformable
     */
     public function users()
     {
-        return $this->belongsToMany(User::class, 'user_subjects', 'subject_id', 'user_id')->withPivot('year_semester');
+        return $this->belongsToMany(User::class, 'user_subjects', 'subject_id', 'user_id')->withPivot('year_semester')->orderBy('year_semester');
     }
 }
