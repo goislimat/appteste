@@ -64,7 +64,9 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->repository->create($request->all());
+        $this->repository->create($request->all());
+        
+        return redirect()->route('subject.index');
     }
 
     /**
@@ -75,7 +77,9 @@ class SubjectController extends Controller
      */
     public function show($id)
     {
-        //
+        $subject = $this->repository->find($id);
+        
+        return view('subject.show', compact('subject'));
     }
 
     /**
@@ -86,7 +90,10 @@ class SubjectController extends Controller
      */
     public function edit($id)
     {
-        //
+        $subject = $this->repository->find($id);
+        $courses = $this->courseRepository->lists('name', 'id');
+        
+        return view('subject.edit', compact('subject', 'courses'));
     }
 
     /**
@@ -98,7 +105,9 @@ class SubjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->repository->update($request->all(), $id);
+        
+        return redirect()->route('subject.index');
     }
 
     /**
@@ -109,6 +118,8 @@ class SubjectController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->repository->delete($id);
+        
+        return redirect()->route('subject.index');
     }
 }

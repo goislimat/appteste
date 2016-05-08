@@ -21,5 +21,10 @@ Route::post('user', ['uses' => 'UserController@store', 'as' => 'user.store']);
 Route::get('course/create', ['uses' => 'CourseController@create', 'as' => 'course.create']);
 Route::post('course', ['uses' => 'CourseController@store', 'as' => 'course.store']);
 
+Route::get('subject', ['uses' => 'SubjectController@index', 'as' => 'subject.index']);
 Route::get('subject/create', ['uses' => 'SubjectController@create', 'as' => 'subject.create']);
 Route::post('subject', ['uses' => 'SubjectController@store', 'as' => 'subject.store']);
+Route::get('subject/{id}', ['uses' => 'SubjectController@show', 'as' => 'subject.show']);
+Route::get('subject/{id}/edit', ['uses' => 'SubjectController@edit', 'as' => 'subject.edit']);
+Route::put('subject/{id}', ['uses' => 'SubjectController@update', 'as' => 'subject.update']);
+Route::delete('subject/{id}', ['uses' => 'SubjectController@destroy', 'as' => 'subject.destroy']);
