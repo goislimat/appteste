@@ -2,20 +2,27 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="subject-info col-md-9">
-            <h2>#{{ $subject->id }} - {{ $subject->name }}</h2>
-            <h4>Disciplina atualmente disponível no {{ $subject->semester }}º período/ano do curso de {{ $subject->course->name }}</h4>
+    <nav class="navbar">
+        <div class="nav navbar-nav navbar-right">
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="glyphicon glyphicon-cog"></span> Ações
+                </button>
+                <ul class="dropdown-menu">
+                    <li>{{ link_to_route('subject.edit', 'Editar', $subject->id, array()) }}</li>
+                    <li role="separator" class="divider"></li>
+                    <li>
+                        {{ Form::open(array('route' => array('subject.destroy', $subject->id), 'method' => 'delete', 'class' => 'form-delete')) }}
+                            {{ Form::submit('Excluir', array('class' => 'btn btn-danger btn-sm col-md-offset-1 col-md-10')) }}
+                        {{ Form::close() }}
+                    </li>
+                </ul>
+            </div>
         </div>
-        
-        <div class="actions col-md-3 row">
-            {{ link_to_route('subject.edit', 'Editar', $subject->id, array('class' => 'btn btn-warning col-md-offset-4 col-md-4')) }}
-            
-            {{ Form::open(array('route' => array('subject.destroy', $subject->id), 'method' => 'delete', 'class' => 'form-delete')) }}
-                {{ Form::submit('Excluir', array('class' => 'btn btn-danger col-md-offset-4 col-md-4')) }}
-            {{ Form::close() }}
-        </div>
-    </div>    
+    </nav>
+   
+    <h2>#{{ $subject->id }} - {{ $subject->name }}</h2>
+    <h4>Disciplina atualmente disponível no {{ $subject->semester }}º período/ano do curso de {{ $subject->course->name }}</h4> 
     
     <div class="panel panel-warning">
         <div class="panel-heading">

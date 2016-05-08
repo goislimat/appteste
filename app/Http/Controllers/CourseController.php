@@ -30,7 +30,9 @@ class CourseController extends Controller
      */
     public function index()
     {
-        //
+        $courses = $this->repository->all();
+        
+        return view('course.index', compact('courses'));
     }
 
     /**
@@ -51,7 +53,9 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->repository->create($request->all());
+        $this->repository->create($request->all());
+        
+        return redirect()->route('course.index');
     }
 
     /**
@@ -62,7 +66,9 @@ class CourseController extends Controller
      */
     public function show($id)
     {
-        //
+        $course = $this->repository->find($id);
+        
+        return view('course.show', compact('course'));
     }
 
     /**
@@ -73,7 +79,9 @@ class CourseController extends Controller
      */
     public function edit($id)
     {
-        //
+        $course = $this->repository->find($id);
+        
+        return view('course.edit', compact('course'));
     }
 
     /**
@@ -85,7 +93,9 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->repository->update($request->all(), $id);
+        
+        return redirect()->route('course.index');
     }
 
     /**
@@ -96,6 +106,8 @@ class CourseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->repository->delete($id);
+        
+        return redirect()->route('course.index');
     }
 }

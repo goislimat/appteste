@@ -25,4 +25,14 @@ class Subject extends Model implements Transformable
 	{
 		return $this->belongsTo(Course::class);
 	}
+    
+    /**
+    * Get the users array for each subject
+    *
+    * return User::class
+    */
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_subjects', 'subject_id', 'user_id')->withPivot('year_semester');
+    }
 }
