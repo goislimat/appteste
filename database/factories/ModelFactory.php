@@ -46,3 +46,13 @@ $factory->define(Projeto\Entities\Subject::class, function (Faker\Generator $fak
     ];
 });
 
+$factory->define(Projeto\Entities\Project::class, function (Faker\Generator $faker) {
+    return [
+        'subject_id' => Projeto\Entities\Subject::all()->random()->id,
+        'title' => $faker->sentence(3, true),
+        'grade' => $faker->numberBetween(10, 40),
+        'description' => $faker->paragraph(3),
+        'due_date' => $faker->dateTimeThisYear('2016-07-08 23:59:59'),
+    ];
+});
+
