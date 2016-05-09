@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('login');
+    return view('auth.login');
 });
 
 Route::post('login', ['uses' => 'UserController@login', 'as' => 'login']);
@@ -24,3 +24,7 @@ Route::resource('course', 'CourseController');
 Route::resource('subject', 'SubjectController');
 
 Route::resource('project', 'ProjectController');
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');

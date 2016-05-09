@@ -52,12 +52,12 @@ class UserService
         
         $user = $this->repository->create($data);
         
-        $user->user = $this->getPrefix($data) . $user->ingress_year . str_pad($user->id, 6, '0', STR_PAD_LEFT);
+        $user->username = $this->getPrefix($data) . $user->ingress_year . str_pad($user->id, 6, '0', STR_PAD_LEFT);
         
         $user['remember_token'] = str_random(10);
         $user->save();
         
-        //enviar um email para $user-email com $user->user e $password
+        //enviar um email para $user-email com $user->username e $password
         //dispara mensagem de sucesso
         return $user;
     }

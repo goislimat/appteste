@@ -22,7 +22,7 @@
                 <td>{{ $user->id }}</td>
                 <td><span class="glyphicon glyphicon-link"></span> {{ link_to_route('user.show', $user->name, $user->id, array()) }}</td>
                 <td>{{ $user->email }}</td>
-                <td>{{ $user->user }}</td>
+                <td>{{ $user->username }}</td>
                 <td>
                 @if($user->type == 1)
                     Aluno
