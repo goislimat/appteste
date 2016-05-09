@@ -9,6 +9,7 @@ use Projeto\Http\Requests;
 use Projeto\Repositories\UserRepository;
 use Projeto\Repositories\CourseRepository;
 use Projeto\Services\UserService;
+use Projeto\Http\Controllers\Auth\AuthController as Auth;
 
 class UserController extends Controller
 {
@@ -37,6 +38,29 @@ class UserController extends Controller
         $this->repository = $repository;
         $this->service = $service;
         $this->courseRepository = $courseRepository;
+    }
+    
+    /**
+    * Try to login a user
+    *
+    * return array
+    */
+    public function login(Request $request)
+    {
+        $user = $this->repository->findWhere([
+            'user' => $request['user']
+        ]);
+        
+        $user['password_check'] = bcrypt(123456);
+        
+        // if (Auth::attempt(array('user' => $request['user'], 'password' => $request['password']))){
+        //     return "success";
+        // }
+        // else {        
+        //     return "Wrong Credentials";
+        // }
+        
+        return $user;
     }
     
     public function index()

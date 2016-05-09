@@ -15,9 +15,7 @@ Route::get('/', function () {
     return view('login');
 });
 
-Route::post('login', function() {
-    //inica a seção mandando para a página de boas vindas
-});
+Route::post('login', ['uses' => 'UserController@login', 'as' => 'login']);
 
 Route::resource('user', 'UserController');
 
