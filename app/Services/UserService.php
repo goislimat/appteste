@@ -4,6 +4,7 @@ namespace Projeto\Services;
 
 use Projeto\Repositories\UserRepository;
 use Projeto\Repositories\CourseRepository;
+use Projeto\Validators\UserValidator;
 
 class UserService
 {
@@ -15,15 +16,22 @@ class UserService
     * @var CourseRepository
     */
     private $courseRepository;
+    /**
+    * @var UserValidator
+    */
+    private $validator;
 
     /**
     * UserService constructor.
     * @param UserRepository $repository
+    * @param CourseRepository $courseRepository
+    * @param UserValidator $validator
     */
-    public function __construct(UserRepository $repository, CourseRepository $courseRepository)
+    public function __construct(UserRepository $repository, CourseRepository $courseRepository, UserValidator $validator)
     {
         $this->repository = $repository;
         $this->courseRepository = $courseRepository;
+        $this->validator = $validator;
     }
     
     /**
