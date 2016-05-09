@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
     
     <h2>Lista de Disciplinas Cadastradas</h2>
     

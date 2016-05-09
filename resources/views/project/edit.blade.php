@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <div class="col-md-offset-4 col-md-4">
         
         <h2>Cadastrar Projeto</h2>

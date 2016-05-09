@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <nav class="navbar">
         <div class="nav navbar-nav navbar-right">
             <div class="btn-group">

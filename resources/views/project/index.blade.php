@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <h2>Lista de projetos cadastrados</h2>
     
     {{ link_to_route('project.create', 'Novo', array(), array('class' => 'btn btn-primary btn-sm')) }}

@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <nav class="navbar">
         <div class="nav navbar-nav navbar-right">
             <div class="btn-group">
@@ -26,7 +26,7 @@
     
     @if(count($course->subjects) == 0)
     
-    <p class="bg-danger">Esse curso ainda não possui nenhuma disciplina vinculada.</p>
+    <p class="bg-danger"><strong>NOTA: </strong>Esse curso ainda não possui nenhuma disciplina vinculada.</p>
     
     @else
     

@@ -1,8 +1,7 @@
 @extends('app')
 
 @section('content')
-@section('content')
-<div class="container">
+<div class="container-fluid">
     
     <div class="col-md-offset-3 col-md-6">
         <h2>Editar Curso</h2>

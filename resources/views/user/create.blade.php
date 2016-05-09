@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
     
     <div class="col-md-offset-3 col-md-6">
         <h2>Cadastrar Usuário</h2>

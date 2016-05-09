@@ -1,9 +1,9 @@
 @extends('app')
 
 @section('content')
-<div class="container">
+<div class="container-fuild">
     
-    <h2>Lista de Cursos Cadastradas</h2>
+    <h2>Lista de Cursos Cadastrados</h2>
     
     {{ link_to_route('course.create', 'Novo', array(), array('class' => 'btn btn-primary btn-sm')) }}
     

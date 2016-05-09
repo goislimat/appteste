@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <h2>Lista de usuários cadastrados no sistema</h2>
     
     {{ link_to_route('user.create', 'Novo', array(), array('class' => 'btn btn-primary btn-sm')) }}

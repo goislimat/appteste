@@ -1,5 +1,6 @@
 * {
     border-radius: 0 !important;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 .bg-danger {
@@ -8,4 +9,9 @@
 
 .panel, .disciplinas {
     clear: both;
+}
+
+.bg-danger {
+    background-color: #f4645f;
+    color: #fff;
 }
