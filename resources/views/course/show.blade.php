@@ -32,7 +32,7 @@
     
     <h3>Grade curricular cadastrada para o curso de Ciências da Computação</h3>
     
-    <table class="table table-condensed">
+    <table class="table table-condensed table-hover">
         <thead>
             <tr>
                 <td>Disciplina</td>

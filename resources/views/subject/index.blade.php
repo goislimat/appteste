@@ -7,7 +7,7 @@
     
     {{ link_to_route('subject.create', 'Novo', array(), array('class' => 'btn btn-primary btn-sm')) }}
     
-    <table class="table table-condensed">
+    <table class="table table-condensed table-hover">
         <thead>
             <tr>
                 <td>Nome</td>

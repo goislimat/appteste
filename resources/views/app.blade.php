@@ -22,62 +22,66 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
     </head>
     <body>
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">sptIFTM</a>
-                </div>
+        <div class="wrapper">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">__pst_IFTM</a>
+                    </div>
 
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                        <li><a href="#">Link</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">One more separated link</a></li>
-                            </ul>
-                        </li>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li>{{ link_to_route('course.index', 'Cursos') }}</li>
+                            <li>{{ link_to_route('subject.index', 'Disciplinas') }}</li>
+                            <li>{{ link_to_route('user.index', 'Usuários') }}</li>
+                            <li>{{ link_to_route('project.index', 'Projetos') }}</li>
+                        </ul>
+                        
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#"><span class="glyphicon glyphicon-off text-danger"></span> Sair</a></li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+            
+            <div class="container">
+                <div class="col-md-9">
+                    @yield('content')
+                </div>
+                <div class="col-md-3 profile">
+                    <h4 class="title">Dados de Conexão</h4>
+                    
+                    <ul class="user-data-profile">
+                        <li class="user-data"><span class="topic">Nome: </span>Thiago Gois Lima</li>
+                        <li class="user-data"><span class="topic">e-mail: </span>thiagogois@iftm.edu.br</li>
+                        <li class="user-data"><span class="topic">Conta: </span>Professor</li>
                     </ul>
-                    <form class="navbar-form navbar-left" role="search">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
-                        </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
-                    </form>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Link</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
-        </nav>
-        
-        <div class="container">
-            <div class="col-md-9">
-                @yield('content')
+                </div>
             </div>
-            <div class="col-md-3">
-                Apresentação dos dados do usuário conectado
-            </div>
+            
+            <div class="push"></div>
         </div>
         
+        <footer class="container-fluid">
+            <div class="col-md-offset-2 col-md-3 footer-content">
+                <p>Ajuda</p>
+                <p>FAQ</p>
+                <p>{{ link_to('http://www.iftm.edu.br/', 'Página principal do IFTM', array('target' => '_blank')) }}</p>
+                <p>{{ link_to('https://virtualif.iftm.edu.br/', 'Virtual IFTM', array('target' => '_blank')) }}</p>
+            </div>
+            <div class="col-md-5 footer-content">
+                <p>Plataforma de Submissão de Trabalhos</p>
+                <p>__pst_IFTM</p>
+                <p>Desenvolvido por: Thiago Gois</p>
+                <p>
+                    {{ link_to('https://www.facebook.com/thiago.g.lima.1', 'facebook', array('target' => '_blank')) }} - 
+                    {{ link_to('https://twitter.com/thiagogoiis', 'twiter', array('target' => '_blank')) }} - 
+                    {{ link_to('https://www.youtube.com/channel/UCKxNWvf8VFwNt6Avd5aAiyg', 'youtube', array('target' => '_blank')) }}
+                </p>
+                <p>Plataforma desenvolvida com o framework {{ link_to('http://www.laravel.com', 'Laravel', array('target' => '_blank')) }}</p>
+            </div>
+        </footer>
     </body>
 </html>

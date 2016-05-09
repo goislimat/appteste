@@ -22,9 +22,9 @@
             {{ Form::label('course_id', 'Curso:') }}
             {{ Form::select('course_id', $courses, null, array('class' => 'form-control course', 'enabled')) }}
             
-            <br>
+            {{ Form::submit('Concluir', array('class' => 'btn btn-primary btn-form')) }}
+            {{ link_to_route('user.index', 'Cancelar', array(), array('class' => 'btn btn-danger btn-sm btn-form')) }}
             
-            {{ Form::submit('Concluir', array('class' => 'btn btn-primary')) }}
         {{ Form::close() }}
     </div>
     

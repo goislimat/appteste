@@ -6,7 +6,7 @@
     
     {{ link_to_route('project.create', 'Novo', array(), array('class' => 'btn btn-primary btn-sm')) }}
     
-    <table class="table table-condensed">
+    <table class="table table-condensed table-hover">
         <thead>
             <tr>
                 <td>Título</td>
@@ -18,7 +18,7 @@
         <tbody>
             @foreach($projects as $project)
             <tr>
-                <td>{{ link_to_route('project.show', $project->title, $project->id, array()) }}</td>
+                <td><span class="glyphicon glyphicon-link"></span> {{ link_to_route('project.show', $project->title, $project->id, array()) }}</td>
                 <td>{{ $project->grade }}</td>
                 <td>{{ $project->subject->name }}</td>
                 <td>{{ $project->due_date }}</td>

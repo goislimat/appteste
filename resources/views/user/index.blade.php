@@ -6,7 +6,7 @@
     
     {{ link_to_route('user.create', 'Novo', array(), array('class' => 'btn btn-primary btn-sm')) }}
     
-    <table class="table table-condensed">
+    <table class="table table-condensed table-hover">
         <thead>
             <tr>
                 <td>ID</td>

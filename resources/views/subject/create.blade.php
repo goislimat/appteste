@@ -16,9 +16,9 @@
             {{ Form::label('semester', 'Semestre/Ano:') }}
             {{ Form::number('semester', null, array('class' => 'form-control')) }}
             
-            <br>
+            {{ Form::submit('Concluir', array('class' => 'btn btn-primary btn-form')) }}
+            {{ link_to_route('subject.index', 'Cancelar', array(), array('class' => 'btn btn-danger btn-sm btn-form')) }}
             
-            {{ Form::submit('Concluir', array('class' => 'btn btn-primary')) }}
         {{ Form::close() }}
     </div>
     

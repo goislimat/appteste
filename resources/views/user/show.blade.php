@@ -45,7 +45,7 @@
     <div class="disciplinas">    
         <h4>Disciplinas vinculadas à esse aluno</h4>
         
-        <table class="table table-condensed">
+        <table class="table table-condensed table-hover">
             <thead>
                 <tr>
                     <td>Nome</td>
