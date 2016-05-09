@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use Projeto\Http\Requests;
 use Projeto\Repositories\CourseRepository;
+use Projeto\Service\CourseService;
 
 class CourseController extends Controller
 {
@@ -13,14 +14,20 @@ class CourseController extends Controller
     * @var CourseRepository
     */
     private $repository;
+    /**
+    * @var CourseService
+    */
+    private $service;
     
     /**
     * CourseController constructor.
     * @param CourseRepository $repository
+    * @param CourseSerice $service
     */
-    public function __construct(CourseRepository $repository)
+    public function __construct(CourseRepository $repository, CourseService $service)
     {
         $this->repository = $repository;
+        $this->service = $service;
     }
     
     /**
@@ -53,7 +60,7 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        $this->repository->create($request->all());
+        $this->service->store($request->all());
         
         return redirect()->route('course.index');
     }
@@ -93,7 +100,7 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->repository->update($request->all(), $id);
+        $this->service->update($request->all(), $id);
         
         return redirect()->route('course.index');
     }

@@ -77,7 +77,7 @@ class UserController extends Controller
     
     public function update(Request $request, $id)
     {
-        $this->repository->update($request, $id);
+        $this->service->update($request->all(), $id);
         
         return redirect()->route('user.index');
     }

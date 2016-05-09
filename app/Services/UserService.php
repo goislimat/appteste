@@ -3,6 +3,7 @@
 namespace Projeto\Services;
 
 use Projeto\Repositories\UserRepository;
+use Projeto\Repositories\CourseRepository;
 
 class UserService
 {
@@ -10,35 +11,40 @@ class UserService
     * @var UserRepository
     */
     private $repository;
+    /**
+    * @var CourseRepository
+    */
+    private $courseRepository;
 
     /**
     * UserService constructor.
     * @param UserRepository $repository
     */
-    public function __construct(UserRepository $repository)
+    public function __construct(UserRepository $repository, CourseRepository $courseRepository)
     {
         $this->repository = $repository;
+        $this->courseRepository = $courseRepository;
     }
     
     /**
     * Run all the tasks before store a new User
     *
     * @param array $user
-    * return User
+    * return array
     */
-    public function store(array $user)
+    public function store(array $data)
     {
         $password = str_random(8);
-        $user['password'] = $password;
+        $data['password'] = $password;
         
-        if($user['course_id'] ==  '')
+        if($data['course_id'] ==  '')
         {
-            $user['course_id'] = null;
+            $data['course_id'] = null;
         } 
         
-        $user = $this->repository->create($user);
+        $user = $this->repository->create($data);
         
-        $user->user = $this->getPrefix($user->type) . $user->ingress_year . str_pad($user->id, 6, '0', STR_PAD_LEFT);
+        $user->user = $this->getPrefix($data) . $user->ingress_year . str_pad($user->id, 6, '0', STR_PAD_LEFT);
         
         $user['remember_token'] = str_random(10);
         $user->save();
@@ -49,19 +55,39 @@ class UserService
     }
     
     /**
+    * Run all the tasks before update a new User
+    *
+    * @param array $user
+    * return array
+    */
+    public function update(array $data, $id)
+    {
+        if($data['course_id'] ==  '')
+        {
+            $data['course_id'] = null;
+        }
+        
+        $data['user'] = $this->getPrefix($data) . $data['ingress_year'] . str_pad($id, 6, '0', STR_PAD_LEFT);
+        
+        $user = $this->repository->update($data, $id);
+        
+        //dispara mensagem de sucesso
+        return $user;
+    }
+    
+    /**
     * Return a user prefix
     *
     * @param $type
     * return string
     */
-    private function getPrefix($type)
+    private function getPrefix($data)
     {
-        if($type == 1)
-        {
-            //find sigla
-            return "ADS";
+        if($data['type'] == 1)
+        {            
+            return $this->courseRepository->find($data['course_id'])->abbr;
         } 
-        else if($type == 2)
+        else if($data['type'] == 2)
         {
             return "PROF";
         }
