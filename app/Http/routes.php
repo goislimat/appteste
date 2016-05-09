@@ -12,7 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
+});
+
+Route::post('login', function() {
+    //inica a seção mandando para a página de boas vindas
 });
 
 Route::resource('user', 'UserController');
