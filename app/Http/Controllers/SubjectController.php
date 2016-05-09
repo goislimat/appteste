@@ -8,6 +8,7 @@ use Projeto\Http\Requests;
 
 use Projeto\Repositories\SubjectRepository;
 use Projeto\Repositories\CourseRepository;
+use Projeto\Service\SubjectService;
 
 class SubjectController extends Controller
 {
@@ -20,16 +21,21 @@ class SubjectController extends Controller
     * @var CourseRepository
     */
     private $courseRepository;
+    /**
+    * @var SubjectService
+    */
+    private $service;
     
     /**
     * SubjectController constructor.
     * @param SubjectRepository $repository
     * @param CourseRepository $courseRepository
     */
-    public function __construct(SubjectRepository $repository, CourseRepository $courseRepository)
+    public function __construct(SubjectRepository $repository, CourseRepository $courseRepository, SubjectService $service)
     {
         $this->repository = $repository;
         $this->courseRepository = $courseRepository;
+        $this->service = $service;
     }
     
     /**
@@ -64,7 +70,7 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        $this->repository->create($request->all());
+        $this->service->store($request->all());
         
         return redirect()->route('subject.index');
     }
@@ -105,7 +111,7 @@ class SubjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->repository->update($request->all(), $id);
+        $this->service->update($request->all(), $id);
         
         return redirect()->route('subject.index');
     }
