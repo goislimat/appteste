@@ -43,4 +43,15 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Subject::class, 'user_subjects', 'user_id', 'subject_id')->withPivot('year_semester')->orderBy('year_semester');
     }
+    
+    /**
+	* Get the files array for this user
+	*
+	* @param 
+	* return ProjectFile::class
+	*/
+	public function files()
+	{
+		return $this->belongsToMany(ProjectFile::class, 'submissions', 'user_id', 'file_id')->withPivot('protocol_number');
+	}
 }
