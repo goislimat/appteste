@@ -35,4 +35,15 @@ class Subject extends Model implements Transformable
     {
         return $this->belongsToMany(User::class, 'user_subjects', 'subject_id', 'user_id')->withPivot('year_semester')->orderBy('year_semester');
     }
+	
+	/**
+	* Get the projects array for each subject
+	*
+	* @param 
+	* return Project::class
+	*/
+	public function projects()
+	{
+		return $this->hasMany(Project::class);
+	}
 }

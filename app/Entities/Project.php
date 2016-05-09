@@ -18,4 +18,14 @@ class Project extends Model implements Transformable
 		'due_date',
 	];
 
+	/**
+	* Get the subject for this project
+	*
+	* @param 
+	* return Subject::class
+	*/
+	public function subject()
+	{
+		return $this->belongsTo(Subject::class);
+	}
 }
