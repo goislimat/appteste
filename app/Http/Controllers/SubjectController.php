@@ -8,7 +8,7 @@ use Projeto\Http\Requests;
 
 use Projeto\Repositories\SubjectRepository;
 use Projeto\Repositories\CourseRepository;
-use Projeto\Service\SubjectService;
+use Projeto\Services\SubjectService;
 
 class SubjectController extends Controller
 {

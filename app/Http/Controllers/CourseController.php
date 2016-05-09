@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use Projeto\Http\Requests;
 use Projeto\Repositories\CourseRepository;
-use Projeto\Service\CourseService;
+use Projeto\Services\CourseService;
 
 class CourseController extends Controller
 {
