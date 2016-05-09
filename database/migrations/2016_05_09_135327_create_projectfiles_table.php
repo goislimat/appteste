@@ -13,11 +13,13 @@ class CreateProjectfilesTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('projectfiles', function(Blueprint $table) {
+		Schema::create('project_files', function(Blueprint $table) {
             $table->increments('id');
-			$table->project_id('project_id');
-			$table->name('name');
-			$table->extension('extension');
+			
+			$table->integer('project_id')->unsigned();
+			$table->foreign('project_id')->references('id')->on('projects');
+			$table->string('name');
+			$table->string('extension', 20);
 
             $table->timestamps();
 		});
@@ -30,7 +32,7 @@ class CreateProjectfilesTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('projectfiles');
+		Schema::drop('project_files');
 	}
 
 }

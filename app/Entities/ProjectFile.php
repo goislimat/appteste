@@ -16,4 +16,14 @@ class ProjectFile extends Model implements Transformable
 		'extension',
 	];
 
+	/**
+	* Get the project for this project file
+	*
+	* @param 
+	* return Project::class
+	*/
+	public function project()
+	{
+		return $this->belongsTo(Project::class);
+	}
 }

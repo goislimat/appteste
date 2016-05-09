@@ -28,4 +28,15 @@ class Project extends Model implements Transformable
 	{
 		return $this->belongsTo(Subject::class);
 	}
+	
+	/**
+	* Get the project files array for this project
+	*
+	* @param 
+	* return ProjectFile::class
+	*/
+	public function files()
+	{
+		return $this->hasMany(ProjectFile:class);
+	}
 }
