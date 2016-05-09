@@ -91,7 +91,21 @@ h2, h4 {
 }
 
 /** FOOTER **/
-footer {
+.page-wrap {
+    min-height: 100%;
+    /* equal to footer height */
+    margin-bottom: -220px; 
+}
+.page-wrap:after {
+    content: "";
+    display: block;
+}
+.site-footer, .page-wrap:after {
+    height: 220px; 
+}
+
+.site-footer {
+    text-align: center;
     background-color: #ecf0f1;
     color: #7D7777;
 }
@@ -100,15 +114,4 @@ footer {
     margin-top: 40px;
     margin-bottom: 30px;
     text-align: center;    
-}
-
-.wrapper {
-    min-height: 100%;
-    height: auto !important;
-    height: 100%;
-    margin: 0 auto -4em;
-}
-
-.push {
-    height: 4em;
 }
