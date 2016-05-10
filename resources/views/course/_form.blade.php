@@ -5,11 +5,10 @@
 }} 
             
     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-        <label class="control-label" for="name">Nome:</label>
+        {{ Form::label('name', 'Nome:', array('class' => 'label-control')) }}
+        {{ Form::text('name', (isset($course)) ? $course->name : old('name'), array('class' => 'form-control')) }}
 
-        <input type="text" class="form-control" name="name" value="{{ (isset($course)) ? $course->name : old('name') }}">
-
-        @if ($errors->has('name'))
+        @if($errors->has('name'))
             <span class="help-block">
                 <strong>{{ $errors->first('name') }}</strong>
             </span>
@@ -17,11 +16,10 @@
     </div>
     
     <div class="form-group{{ $errors->has('abbr') ? ' has-error' : '' }}">
-        <label class="control-label" for="abbr">Abreviação:</label>
+        {{ Form::label('abbr', 'Abrevisação:', array('class' => 'label-control')) }}
+        {{ Form::text('abbr', (isset($course)) ? $course->abbr : old('abbr'), array('class' => 'form-control')) }}
 
-        <input type="text" class="form-control" name="abbr" value="{{ (isset($course)) ? $course->abbr : old('abbr') }}">
-
-        @if ($errors->has('abbr'))
+        @if($errors->has('abbr'))
             <span class="help-block">
                 <strong>{{ $errors->first('abbr') }}</strong>
             </span>
