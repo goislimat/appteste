@@ -40,29 +40,6 @@ class UserController extends Controller
         $this->courseRepository = $courseRepository;
     }
     
-    /**
-    * Try to login a user
-    *
-    * return array
-    */
-    public function login(Request $request)
-    {
-        $user = $this->repository->findWhere([
-            'user' => $request['user']
-        ]);
-        
-        $user['password_check'] = bcrypt(123456);
-        
-        // if (Auth::attempt(array('user' => $request['user'], 'password' => $request['password']))){
-        //     return "success";
-        // }
-        // else {        
-        //     return "Wrong Credentials";
-        // }
-        
-        return $user;
-    }
-    
     public function index()
     {
         $users = $this->repository->all();

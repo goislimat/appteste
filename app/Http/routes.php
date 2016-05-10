@@ -15,15 +15,16 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::post('login', ['uses' => 'UserController@login', 'as' => 'login']);
+Route::group(['middleware' => 'auth'], function() {
+    Route::resource('user', 'UserController');
 
-Route::resource('user', 'UserController');
+    Route::resource('course', 'CourseController');
 
-Route::resource('course', 'CourseController');
+    Route::resource('subject', 'SubjectController');
 
-Route::resource('subject', 'SubjectController');
+    Route::resource('project', 'ProjectController');
+});
 
-Route::resource('project', 'ProjectController');
 
 Route::auth();
 

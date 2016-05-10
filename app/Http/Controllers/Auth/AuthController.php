@@ -2,11 +2,14 @@
 
 namespace Projeto\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
+
 use Projeto\User;
 use Validator;
 use Projeto\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Auth;
 
 class AuthController extends Controller
 {
@@ -28,7 +31,8 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/course';
+    protected $redirectTo = '/home';
+    protected $username = 'username';        
 
     /**
      * Create a new authentication controller instance.
