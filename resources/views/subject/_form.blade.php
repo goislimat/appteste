@@ -16,11 +16,11 @@
     
     <div class="form-group">
         {{ Form::label('course_id', 'Curso:') }}
-        {{ Form::select('course_id', $courses, ($isset($subject)) ? $subject->course_id : old('course_id'), array('class' => 'form-control')) }}
+        {{ Form::select('course_id', $courses, (isset($subject)) ? $subject->course_id : old('course_id'), array('class' => 'form-control')) }}
     </div>
     
     <div class="form-group{{ ($errors->has('semester')) ? ' has-error' : '' }}">
-        {{ Form::label('semester', 'Semestre/Ano::', array('class' => 'label-control')) }}
+        {{ Form::label('semester', 'Semestre/Ano:', array('class' => 'label-control')) }}
         {{ Form::number('semester', (isset($subject)) ? $subject->semester : old('semester'), array('class' => 'form-control')) }}
         
         @if($errors->has('semester'))
