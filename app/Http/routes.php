@@ -22,7 +22,9 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::resource('subject', 'SubjectController');
 
-    Route::resource('project', 'ProjectController');
+    Route::group(['prefix' => 'subject'], function() {
+        Route::resource('{subjectId}/project', 'ProjectController');
+    });
 });
 
 
