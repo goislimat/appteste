@@ -45,7 +45,7 @@
                         <li>{{ link_to_route('course.index', 'Cursos') }}</li>
                         <li>{{ link_to_route('subject.index', 'Disciplinas') }}</li>
                         <li>{{ link_to_route('user.index', 'Usuários') }}</li>
-                        <li>{{ link_to_route('project.index', 'Projetos') }}</li>
+                        <li>{{ link_to_route('subject.project.index', 'Projetos', 1) }}</li>
                     </ul>
                     
                     <ul class="nav navbar-nav navbar-right">

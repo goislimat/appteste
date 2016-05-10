@@ -1,7 +1,7 @@
 {{
     (!isset($project))
-    ? Form::open(array('route' => array('project.store'), 'method' => 'post'))
-    : Form::open(array('route' => array('project.update', $project->id), 'method' => 'put'))
+    ? Form::open(array('route' => array('subject.project.store', $project->subject_id), 'method' => 'post'))
+    : Form::open(array('route' => array('subject.project.update', $project->subject_id, $project->id), 'method' => 'put'))
 }}
 
     <div class="form-group{{ ($errors->has('title')) ? ' has-error' : '' }}">
@@ -71,7 +71,10 @@
     
     <div class="form-group">
         {{ Form::submit('Concluir', array('class' => 'btn btn-primary btn-form')) }}
-        {{ link_to_route('project.index', 'Cancelar', array(), array('class' => 'btn btn-danger btn-sm btn-form')) }}
+        {{ (isset($project))
+             ? link_to_route('subject.project.index', 'Cancelar', array($project->subject_id), array('class' => 'btn btn-danger btn-sm btn-form'))
+             : link_to_route('home', 'Cancelar', array(), array('class' => 'btn btn-danger btn-sm btn-form'))
+        }}
     </div>
     
 {{ Form::close() }}

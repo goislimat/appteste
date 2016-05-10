@@ -22,12 +22,10 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::resource('subject', 'SubjectController');
 
-    Route::group(['prefix' => 'subject'], function() {
-        Route::resource('{subjectId}/project', 'ProjectController');
-    });
+    Route::resource('subject.project', 'ProjectController');
 });
 
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+Route::get('home', ['uses' => 'HomeController@index', 'as' => 'home']);

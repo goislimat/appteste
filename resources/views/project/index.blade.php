@@ -4,8 +4,6 @@
 <div class="container-fluid">
     <h2>Lista de projetos cadastrados</h2>
     
-    {{ link_to_route('project.create', 'Novo', array(), array('class' => 'btn btn-primary btn-sm')) }}
-    
     <table class="table table-condensed table-hover">
         <thead>
             <tr>
@@ -18,7 +16,7 @@
         <tbody>
             @foreach($projects as $project)
             <tr>
-                <td><span class="glyphicon glyphicon-link"></span> {{ link_to_route('project.show', $project->title, $project->id, array()) }}</td>
+                <td><span class="glyphicon glyphicon-link"></span> {{ link_to_route('subject.project.show', $project->title, array($project->subject_id, $project->id)) }}</td>
                 <td>{{ $project->grade }}</td>
                 <td>{{ $project->subject->name }}</td>
                 <td>{{ $project->due_date }}</td>
