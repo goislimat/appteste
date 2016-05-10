@@ -9,7 +9,7 @@ class ProjectValidator extends LaravelValidator {
 
     protected $rules = [
         'title' => 'required|min:4',
-        'due_date' => 'required'
+        'due_date' => 'required|date'
    ];
 
 }

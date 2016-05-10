@@ -9,7 +9,7 @@ class SubjectValidator extends LaravelValidator {
 
     protected $rules = [
         'name' => 'required|min:5',
-        'semester' => 'required'
+        'semester' => 'required|numeric'
    ];
 
 }

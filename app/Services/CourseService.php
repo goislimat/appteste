@@ -3,6 +3,7 @@
 namespace Projeto\Services;
 
 use Projeto\Repositories\CourseRepository;
+use Projeto\Validators\CourseValidator;
 
 class CourseService
 {
@@ -10,14 +11,20 @@ class CourseService
     * @var CourseRepository
     */
     private $repository;
+    /**
+    * @var CourseValidator
+    */
+    private $validator;
 
     /**
     * CourseService constructor.
     * @param CourseRepository $repository
+    * @param CourseValidator $validator
     */
-    public function __construct(CourseRepository $repository)
+    public function __construct(CourseRepository $repository, CourseValidator $validator)
     {
         $this->repository = $repository;
+        $this->validator = $validator;
     }
     
     /**

@@ -3,6 +3,7 @@
 namespace Projeto\Services;
 
 use Projeto\Repositories\SubjectRepository;
+use Projeto\Validators\SubjectValidator;
 
 class SubjectService
 {
@@ -10,14 +11,20 @@ class SubjectService
     * @var SubjectRepository
     */
     private $repository;
+    /**
+    * @var SubjectValidator
+    */
+    private $validator;
 
     /**
     * SubjectService constructor.
     * @param SubjectRepository $repository
+    * @param SubjectValidator $validator
     */
-    public function __construct(SubjectRepository $repository)
+    public function __construct(SubjectRepository $repository, SubjectValidator $validator)
     {
         $this->repository = $repository;
+        $this->validator = $validator;
     }
     
     /**

@@ -9,7 +9,7 @@ class UserValidator extends LaravelValidator {
 
     protected $rules = [
         'name' => 'required|min:5',
-        'email' => 'required|min:5',
+        'email' => 'required|email|min:5',
         'type' => 'required',
         'password' => 'required|min:6'
    ];
