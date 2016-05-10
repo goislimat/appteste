@@ -2,25 +2,10 @@
 
 @section('content')
 <div class="container-fluid">
-    
-    <div class="col-md-offset-3 col-md-6">
-        <h2>Cadastrar Disciplina</h2>
+    <div class="col-md-offset-2 col-md-8">
+        <h2>Editar Disciplina</h2>
         
-        {{ Form::open(array('route' => array('subject.update', $subject->id), 'method' => 'put')) }}
-            {{ Form::label('name', 'Nome:') }}
-            {{ Form::text('name', $subject->name, array('class' => 'form-control')) }}
-            
-            {{ Form::label('course_id', 'Curso:') }}
-            {{ Form::select('course_id', $courses, $subject->course_id, array('class' => 'form-control')) }}
-            
-            {{ Form::label('semester', 'Semestre/Ano:') }}
-            {{ Form::number('semester', $subject->semester, array('class' => 'form-control')) }}
-            
-            {{ Form::submit('Concluir', array('class' => 'btn btn-primary btn-form')) }}
-            {{ link_to_route('subject.index', 'Cancelar', array(), array('class' => 'btn btn-danger btn-sm btn-form')) }}
-            
-        {{ Form::close() }}
+        @include('subject._form')
     </div>
-    
 </div>
 @endsection
