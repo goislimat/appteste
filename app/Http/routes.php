@@ -17,10 +17,12 @@ Route::get('/', function () {
 
 Route::group(['middleware' => 'auth'], function() {
     Route::resource('user', 'UserController');
+    Route::get('user/{id?}/create', ['uses' => 'UserController@create', 'as' => 'course.user.create']);
 
     Route::resource('course', 'CourseController');
 
     Route::resource('subject', 'SubjectController');
+    Route::get('subject/{id?}/create', ['uses' => 'SubjectController@create', 'as' => 'course.subject.create']);
 
     Route::resource('subject.project', 'ProjectController');
 });

@@ -37,7 +37,7 @@ class SubjectController extends Controller
         $this->courseRepository = $courseRepository;
         $this->service = $service;
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -53,13 +53,14 @@ class SubjectController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param null $courseId
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($courseId = null)
     {
         $courses = $this->courseRepository->lists('name', 'id');
         
-        return view('subject.create', compact('courses'));
+        return view('subject.create', compact('courses', 'courseId'));
     }
 
     /**

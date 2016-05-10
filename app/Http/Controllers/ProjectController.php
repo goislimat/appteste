@@ -23,27 +23,32 @@ class ProjectController extends Controller
     * @var ProjectService
     */
     private $service;
-    
+
     /**
-    * ProjectController constructor.
-    * @param ProjectRepository $repository
-    */
+     * ProjectController constructor.
+     * @param ProjectRepository $repository
+     * @param SubjectRepository $subjectRepository
+     * @param ProjectService $service
+     */
     public function __construct(ProjectRepository $repository, SubjectRepository $subjectRepository, ProjectService $service)
     {
         $this->repository = $repository;
         $this->subjectRepository = $subjectRepository;
         $this->service = $service;
     }
-    
+
     /**
      * Display a listing of the resource.
      *
+     * @param $subjectId
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($subjectId)
     {
-        $projects = $this->repository->paginate();
-        
+        $projects = $this->repository->findWhere(['subject_id' => $subjectId]);
+        //return $this->repository->findWhere(['subject_id' => $subjectId]);
+
+
         return view('project.index', compact('projects'));
     }
 

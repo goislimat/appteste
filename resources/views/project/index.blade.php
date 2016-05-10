@@ -26,7 +26,7 @@
     </table>
     
     <div class="col-md-offset-3 col-md-6">
-        {{ $projects->links() }}
+        {{ (isset($projects->total)) ? $projects->links() : '' }}
     </div>
 </div>
 @endsection

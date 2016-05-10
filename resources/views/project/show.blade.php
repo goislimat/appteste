@@ -22,10 +22,26 @@
     </nav>
     
     <h2>#{{ $project->id }} - {{ $project->title }}</h2>
-    <h4>Data limite de entrega: {{ $project->due_date }}</h4>
+    <h4>Data limite de entrega: {{ date_format(date_create($project->due_date), 'd/m/Y') }} às {{ date_format(date_create($project->due_date), 'H:i:s') }}</h4>
+
+    @if($project->grade != null)
+        <h5>Valor: {{ $project->grade }} pontos</h5>
+    @endif
+
     <h6>Disciplina: {{ $project->subject->name }}</h6>
-    
-    LISTA DE ARQUIVOS SUBMETIDOS AO TRABALHO
+
+    @if($project->description != null)
+        <div class="col-md-offset-2 col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">Descrição do Trabalho</div>
+                <div class="panel-body">
+                    {{ nl2br(e($project->description)) }}
+                </div>
+            </div>
+        </div>
+    @endif
+
+
     
     <div class="panel panel-warning">
         <div class="panel-heading">
@@ -37,10 +53,4 @@
         </div>
     </div>
 </div>
-
-<script>
-    $(document).on('submit', '.form-delete', function() {
-        return confirm('Tem certeza que deseja excluir esse trabalho?');
-    });
-</script>
 @endsection

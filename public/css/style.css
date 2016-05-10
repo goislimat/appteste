@@ -60,14 +60,6 @@ ul {
 }
 /** FIM DO MENU DE PERFIL **/
 
-/** FORM LOGIN **/
-/*.form-login {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-}*/
-/** FIM DO FORM LOGIN **/
-
 h2, h4 {
     color: #e74c3c;
 }
@@ -88,6 +80,16 @@ h2, h4 {
     background-color: #f4645f;
     color: #fff;
 }
+
+/** OPTIONAL CONTENT **/
+.optional-slide {
+    cursor: pointer;
+}
+
+.optional {
+    display: none;
+}
+/** FIM DO OPTIONAL CONTENT **/
 
 /** FOOTER **/
 .page-wrap {

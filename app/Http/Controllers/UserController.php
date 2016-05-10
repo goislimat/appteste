@@ -47,13 +47,17 @@ class UserController extends Controller
         return view('user.index', compact('users'));
     }
     
-    public function create()
+    public function create($courseId = null)
     {
         $courses = ['' => ''] + $this->courseRepository->lists('name', 'id')->all();
         
-        return view('user.create', compact('courses'));
+        return view('user.create', compact('courses', 'courseId'));
     }
-    
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
         $this->service->store($request->all());

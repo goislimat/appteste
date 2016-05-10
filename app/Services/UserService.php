@@ -33,13 +33,13 @@ class UserService
         $this->courseRepository = $courseRepository;
         $this->validator = $validator;
     }
-    
+
     /**
-    * Run all the tasks before store a new User
-    *
-    * @param array $user
-    * return array
-    */
+     * Run all the tasks before store a new User
+     *
+     * @param array $data
+     * @return mixed
+     */
     public function store(array $data)
     {
         $password = str_random(8);
@@ -61,13 +61,14 @@ class UserService
         //dispara mensagem de sucesso
         return $user;
     }
-    
+
     /**
-    * Run all the tasks before update a new User
-    *
-    * @param array $user
-    * return array
-    */
+     * Run all the tasks before update a new User
+     *
+     * @param array $data
+     * @param $id
+     * @return mixed
+     */
     public function update(array $data, $id)
     {
         if($data['course_id'] ==  '')
@@ -82,13 +83,14 @@ class UserService
         //dispara mensagem de sucesso
         return $user;
     }
-    
+
     /**
-    * Return a user prefix
-    *
-    * @param $type
-    * return string
-    */
+     * Return a user prefix
+     *
+     * @param $data
+     * @return string
+     * @internal param $type return string* return string
+     */
     private function getPrefix($data)
     {
         if($data['type'] == 1)
