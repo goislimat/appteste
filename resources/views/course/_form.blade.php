@@ -3,7 +3,6 @@
     ? Form::open(array('route' => array('course.store'), 'method' => 'post')) 
     : Form::open(array('route' => array('course.update', $course->id), 'method' => 'put')) 
 }} 
-
             
     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
         <label class="control-label" for="name">Nome:</label>
