@@ -42,7 +42,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = $this->repository->all();
+        $projects = $this->repository->paginate();
         
         return view('project.index', compact('projects'));
     }

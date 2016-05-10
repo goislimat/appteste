@@ -22,7 +22,7 @@ $factory->define(Projeto\Entities\Course::class, function (Faker\Generator $fake
 $factory->define(Projeto\Entities\User::class, function (Faker\Generator $faker) {
     $hash = [
         'name' => $faker->name,
-        'user' => str_random(10),
+        'username' => str_random(10),
         'email' => $faker->safeEmail,
         'password' => bcrypt(str_random(10)),
         'type' => $faker->numberBetween(1, 3),

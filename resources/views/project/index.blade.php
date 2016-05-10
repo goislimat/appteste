@@ -26,5 +26,9 @@
             @endforeach
         </tbody>
     </table>
+    
+    <div class="col-md-offset-3 col-md-6">
+        {{ $projects->links() }}
+    </div>
 </div>
 @endsection

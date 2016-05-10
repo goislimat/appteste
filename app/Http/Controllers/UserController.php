@@ -42,7 +42,7 @@ class UserController extends Controller
     
     public function index()
     {
-        $users = $this->repository->all();
+        $users = $this->repository->paginate();
         
         return view('user.index', compact('users'));
     }

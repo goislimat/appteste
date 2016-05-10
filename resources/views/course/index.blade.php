@@ -26,5 +26,8 @@
         </tbody>
     </table>
     
+    <div class="col-md-offset-3 col-md-6">
+        {{ $courses->links() }}
+    </div>
 </div>
 @endsection

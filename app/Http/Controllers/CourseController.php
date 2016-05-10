@@ -37,7 +37,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = $this->repository->all();
+        $courses = $this->repository->paginate();
         
         return view('course.index', compact('courses'));
     }
