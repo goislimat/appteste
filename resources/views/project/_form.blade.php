@@ -1,6 +1,6 @@
 {{
     (!isset($project))
-    ? Form::open(array('route' => array('subject.project.store', $project->subject_id), 'method' => 'post'))
+    ? Form::open(array('route' => array('subject.project.store', $subject->id), 'method' => 'post'))
     : Form::open(array('route' => array('subject.project.update', $project->subject_id, $project->id), 'method' => 'put'))
 }}
 
@@ -16,8 +16,9 @@
     </div>
     
     <div class="form-group">
-        {{ Form::label('subject_id', 'Disciplina:', array('class' => 'control-label')) }}
-        {{ Form::select('subject_id', $subjects, (isset($project)) ? $project->subject_id : old('subject_id'), array('class' => 'form-control')) }}
+        {{ Form::label('subject', 'Disciplina:', array('class' => 'control-label')) }}
+        {{ Form::text('subject', (isset($project)) ? $project->subject->name : $subject->name, array('class' => 'form-control', 'readonly' => 'readonly')) }}
+        {{ Form::hidden('subject_id', (isset($project)) ? $project->subject->id : $subject->id) }}
     </div>
     
     <div class="form-group{{ ($errors->has('grade')) ? ' has-error' : '' }}">
@@ -71,10 +72,7 @@
     
     <div class="form-group">
         {{ Form::submit('Concluir', array('class' => 'btn btn-primary btn-form')) }}
-        {{ (isset($project))
-             ? link_to_route('subject.project.index', 'Cancelar', array($project->subject_id), array('class' => 'btn btn-danger btn-sm btn-form'))
-             : link_to_route('home', 'Cancelar', array(), array('class' => 'btn btn-danger btn-sm btn-form'))
-        }}
+        {{ link_to_route('home', 'Cancelar', array(), array('class' => 'btn btn-danger btn-sm btn-form')) }}
     </div>
     
 {{ Form::close() }}

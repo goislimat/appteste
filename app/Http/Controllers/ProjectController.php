@@ -55,13 +55,14 @@ class ProjectController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param $subjectId
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($subjectId)
     {
-        $subjects = $this->subjectRepository->lists('name', 'id');
+        $subject = $this->subjectRepository->find($subjectId);
         
-        return view('project.create', compact('subjects'));
+        return view('project.create', compact('subject'));
     }
 
     /**
@@ -70,11 +71,11 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $subjectId)
     {
-        $this->service->store($request->all());
+        $project = $this->service->store($request->all());
         
-        return redirect()->route('project.index');
+        return redirect()->route('subject.project.show', array($subjectId, $project->id));
     }
 
     /**
@@ -83,7 +84,7 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($subjectId, $id)
     {
         $project = $this->repository->find($id);
         
@@ -96,7 +97,7 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($subjectId, $id)
     {
         $project = $this->service->edit($id);        
         $subjects = $this->subjectRepository->lists('name', 'id');
@@ -111,11 +112,11 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $subjectId, $id)
     {
         $this->service->update($request->all(), $id);
         
-        return redirect()->route('project.index');
+        return redirect()->route('subject.project.show', array($subjectId, $id));
     }
 
     /**
@@ -124,10 +125,10 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($subjectId, $id)
     {
         $this->repository->delete($id);
         
-        return redirect()->route('project.index');
+        return redirect()->route('subject.project.index', array($subjectId));
     }
 }

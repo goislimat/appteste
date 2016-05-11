@@ -31,11 +31,11 @@
     <h6>Disciplina: {{ $project->subject->name }}</h6>
 
     @if($project->description != null)
-        <div class="col-md-offset-2 col-md-8">
+        <div class="col-md-offset-1 col-md-10">
             <div class="panel panel-default">
-                <div class="panel-heading">Descrição do Trabalho</div>
-                <div class="panel-body">
-                    {{ nl2br(e($project->description)) }}
+                <div class="panel-heading optional-slide">Descrição do Trabalho</div>
+                <div class="panel-body optional optional-hide">
+                    {!! $project->description !!}
                 </div>
             </div>
         </div>

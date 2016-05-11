@@ -6,7 +6,7 @@
         
         <h2>Cadastrar Projeto</h2>
         
-        @include('project._form')
+        @include('.project._form')
         
     </div>
 </div>
