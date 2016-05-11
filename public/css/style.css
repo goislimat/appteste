@@ -81,7 +81,7 @@ h2, h4 {
 .bg-danger-invert {
     background-color: #fff;
     color: #f4645f;
-    padding: 0 5px;
+    padding: 3px 5px;
 }
 
 /** OPTIONAL CONTENT **/
