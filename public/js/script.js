@@ -31,6 +31,7 @@ function changePropOnCourseSelect(value)
 $(window).on('load', function() 
 {
     changePropOnCourseSelect($('.user-type').val());
+    $('.formatted-area').ckeditor();
 });
 
 $('.user-type').on('change', function()

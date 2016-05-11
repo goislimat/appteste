@@ -88,6 +88,13 @@ h2, h4 {
     clear: both;
 }
 
+.cke_top, .cke_bottom {
+    border: 0 !important;
+    box-shadow: none !important;
+    background: #eee !important;
+    background-image: none !important;
+}
+
 /** OPTIONAL CONTENT **/
 .optional-slide {
     cursor: pointer;

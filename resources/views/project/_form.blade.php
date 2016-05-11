@@ -34,7 +34,7 @@
     
     <div class="form-group{{ ($errors->has('description')) ? ' has-error' : '' }}">
         {{ Form::label('description', 'Descrição:', array('class' => 'control-label')) }}
-        {{ Form::textarea('description', (isset($project)) ? $project->description : old('description'), array('class' => 'form-control')) }}
+        {{ Form::textarea('description', (isset($project)) ? $project->description : old('description'), array('class' => 'form-control formatted-area')) }}
         
         @if($errors->has('description'))
             <span class="help-block">
