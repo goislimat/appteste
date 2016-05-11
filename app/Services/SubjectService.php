@@ -44,14 +44,22 @@ class SubjectService
     {
         $subject = $this->repository->find($id);
 
+        $subject['teacher'] = null;
         $users = array();
         $semester = date('Y') . '/' . ((date('m') > 6) ? '2': '1');
 
         foreach($subject->users as $user)
         {
-            if($user->pivot->year_semester == $semester && $user->type == 1)
+            if($user->pivot->year_semester == $semester)
             {
-                array_push($users, $user);
+                if($user->type == 1)
+                {
+                    array_push($users, $user);
+                }
+                else if($user->type == 2)
+                {
+                    $subject['teacher'] = $user;
+                }
             }
         }
 

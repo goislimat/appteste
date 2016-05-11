@@ -7,6 +7,7 @@
             <ul class="dropdown-menu">
                 <li>{{ link_to_route('enroll.new', 'Matricular Aluno', array($subject->id)) }}</li>
                 <li>{{ link_to_route('subject.all', 'Buscar Todos os Alunos', array($subject->id)) }}</li>
+                <li role="separator" class="divider"></li>
                 <li>{{ link_to_route('enroll.new.teacher', 'Cadastrar Professor', array($subject->id)) }}</li>
                 <li>{{ link_to_route('subject.all', 'Buscar Todos os Professores', array($subject->id, 'teacher')) }}</li>
                 <li role="separator" class="divider"></li>

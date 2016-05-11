@@ -85,7 +85,7 @@ class SubjectController extends Controller
     public function show($id)
     {
         $subject = $this->service->find($id);
-        
+        //return $subject;
         return view('subject.show', compact('subject'));
     }
 
