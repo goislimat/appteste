@@ -22,13 +22,20 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('course', 'CourseController');
 
     Route::resource('subject', 'SubjectController');
-    Route::get('subject/{id?}/create', ['uses' => 'SubjectController@create', 'as' => 'course.subject.create']);
-    Route::get('subject/{id}/all', ['uses' => 'SubjectController@all', 'as' => 'subject.all']);
 
     Route::resource('subject.project', 'ProjectController');
 
-    Route::get('subject/{id}/enroll', ['uses' => 'EnrollController@create', 'as' => 'enroll.new']);
-    Route::post('subject/enroll', ['uses' => 'EnrollController@store', 'as' => 'enroll.store']);
+    Route::group(['prefix' => 'subject'], function() {
+        Route::get      ('{id?}/create',                                ['uses' => 'SubjectController@create',      'as' => 'course.subject.create']);
+        Route::get      ('{id}/all/{teacher?}',                         ['uses' => 'SubjectController@all',         'as' => 'subject.all']);
+
+        Route::get      ('{id}/enroll',                                 ['uses' => 'EnrollController@create',       'as' => 'enroll.new']);
+        Route::post     ('enroll',                                      ['uses' => 'EnrollController@store',        'as' => 'enroll.store']);
+        Route::get      ('{id}/new/teacher',                            ['uses' => 'EnrollController@newTeacher',   'as' => 'enroll.new.teacher']);
+        Route::delete   ('{subjectId}/user/{userId}/{yearSemester}',    ['uses' => 'EnrollController@destroy',      'as' => 'enroll.destroy']);
+    });
+
+
 });
 
 

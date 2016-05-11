@@ -41,13 +41,45 @@ class EnrollService
      */
     public function create($subjectId)
     {
-        $courseId = $this->subjectRepository->find($subjectId)->course_id;
+        $courseId = $this->getCourseId($subjectId);
 
         return $this->userRepository->findWhere(['course_id' => $courseId])->lists('name', 'id');
     }
 
+    /**
+     * @param array $data
+     */
     public function store(array $data)
     {
         $this->subjectRepository->find($data['subject_id'])->users()->attach($data['user_id'], ['year_semester' => $data['year_semester']]);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function newTeacher()
+    {
+        return $this->userRepository->findWhere(['type' => 2])->lists('name', 'id');
+    }
+
+    /**
+     * @param $subjectId
+     * @param $userId
+     * @param $yearSemester
+     */
+    public function destroy($subjectId, $userId, $yearSemester)
+    {
+        $yearSemester = str_replace('_', '/', $yearSemester);
+
+        $this->subjectRepository->find($subjectId)->users()->newPivotStatementForId($userId)->whereYearSemester($yearSemester)->delete();
+    }
+
+    /**
+     * @param $subjectId
+     * @return mixed
+     */
+    private function getCourseId($subjectId)
+    {
+        return $this->subjectRepository->find($subjectId)->course_id;
     }
 }

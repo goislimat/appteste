@@ -132,11 +132,12 @@ class SubjectController extends Controller
 
     /**
      * @param $id
+     * @param null $teacher
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function all($id)
+    public function all($id, $teacher = null)
     {
-        $subject = $this->service->all($id);
+        $subject = ($teacher == null) ? $this->service->all($id, 1) : $this->service->all($id, 2);
 
         return view('subject.all', compact('subject'));
     }

@@ -70,7 +70,26 @@ class SubjectService
         return $this->repository->update($data, $id);
     }
 
-    public function all($id)
+    /**
+     * Return the collection of students for a given subject
+     *
+     * @param $id
+     * @param $type
+     * @return mixed
+     */
+    public function all($id, $type)
+    {
+        return $this->searchForUser($id, $type);
+    }
+
+    /**
+     * Search for a user given his type
+     *
+     * @param $id
+     * @param $type
+     * @return mixed
+     */
+    private function searchForUser($id, $type)
     {
         $subject = $this->repository->find($id);
 
@@ -78,13 +97,14 @@ class SubjectService
 
         foreach($subject->users as $user)
         {
-            if($user->type == 1)
+            if($user->type == $type)
             {
                 array_push($users, $user);
             }
         }
 
         $subject->users = $users;
+        $subject['user_type'] = $type;
 
         return $subject;
     }
