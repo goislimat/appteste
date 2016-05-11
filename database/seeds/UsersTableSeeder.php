@@ -24,6 +24,6 @@ class UsersTableSeeder extends Seeder
             'ingress_year' => 2016,
         ]);
         
-        factory(User::class, 5)->create();
+        factory(User::class, 20)->create();
     }
 }

@@ -14,6 +14,6 @@ class SubjectsTableSeeder extends Seeder
     {
         Subject::truncate();
         
-        factory(Subject::class, 30)->create();
+        factory(Subject::class, 20)->create();
     }
 }

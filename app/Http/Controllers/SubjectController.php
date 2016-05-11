@@ -84,7 +84,7 @@ class SubjectController extends Controller
      */
     public function show($id)
     {
-        $subject = $this->repository->find($id);
+        $subject = $this->service->find($id);
         
         return view('subject.show', compact('subject'));
     }
@@ -128,5 +128,16 @@ class SubjectController extends Controller
         $this->repository->delete($id);
         
         return redirect()->route('subject.index');
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function all($id)
+    {
+        $subject = $this->service->all($id);
+
+        return view('subject.all', compact('subject'));
     }
 }

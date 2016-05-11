@@ -19,7 +19,7 @@
             <button class="btn btn-link"><span class="glyphicon glyphicon-chevron-down"></span></button>
         </h3>
 
-        <div class="optional">
+        <div class="optional optional-hide">
             <table class="table table-condensed table-hover">
                 <thead>
                     <tr>
@@ -50,7 +50,7 @@
             <button class="btn btn-link"><span class="glyphicon glyphicon-chevron-down"></span></button>
         </h3>
 
-        <div class="optional">
+        <div class="optional optional-hide">
             <table class="table table-condensed table-hover">
                 <thead>
                 <tr>

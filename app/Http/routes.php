@@ -23,8 +23,12 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::resource('subject', 'SubjectController');
     Route::get('subject/{id?}/create', ['uses' => 'SubjectController@create', 'as' => 'course.subject.create']);
+    Route::get('subject/{id}/all', ['uses' => 'SubjectController@all', 'as' => 'subject.all']);
 
     Route::resource('subject.project', 'ProjectController');
+
+    Route::get('subject/{id}/enroll', ['uses' => 'EnrollController@create', 'as' => 'enroll.new']);
+    Route::post('subject/enroll', ['uses' => 'EnrollController@store', 'as' => 'enroll.store']);
 });
 
 

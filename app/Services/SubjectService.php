@@ -26,26 +26,66 @@ class SubjectService
         $this->repository = $repository;
         $this->validator = $validator;
     }
-    
+
     /**
-    * Does the procedure to store a new subject
-    *
-    * @param array $data
-    * return array
-    */
+     * @param array $data
+     * @return mixed
+     */
     public function store(array $data)
     {
         return $this->repository->create($data);
     }
-    
+
     /**
-    * Does the procedure to update a subject
-    *
-    * @param array $data
-    * return array
-    */
+     * @param $id
+     * @return mixed
+     */
+    public function find($id)
+    {
+        $subject = $this->repository->find($id);
+
+        $users = array();
+        $semester = date('Y') . '/' . ((date('m') > 6) ? '2': '1');
+
+        foreach($subject->users as $user)
+        {
+            if($user->pivot->year_semester == $semester && $user->type == 1)
+            {
+                array_push($users, $user);
+            }
+        }
+
+        $subject->users = $users;
+
+        return $subject;
+    }
+
+    /**
+     * @param array $data
+     * @param $id
+     * @return mixed
+     */
     public function update(array $data, $id)
     {
         return $this->repository->update($data, $id);
+    }
+
+    public function all($id)
+    {
+        $subject = $this->repository->find($id);
+
+        $users = array();
+
+        foreach($subject->users as $user)
+        {
+            if($user->type == 1)
+            {
+                array_push($users, $user);
+            }
+        }
+
+        $subject->users = $users;
+
+        return $subject;
     }
 }

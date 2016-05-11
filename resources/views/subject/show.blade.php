@@ -2,42 +2,48 @@
 
 @section('content')
 <div class="container-fluid">
-    <nav class="navbar">
-        <div class="nav navbar-nav navbar-right">
-            <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="glyphicon glyphicon-cog"></span> Ações
-                </button>
-                <ul class="dropdown-menu">
-                    <li>{{ link_to_route('subject.edit', 'Editar', $subject->id, array()) }}</li>
-                    <li role="separator" class="divider"></li>
-                    <li>
-                        {{ Form::open(array('route' => array('subject.destroy', $subject->id), 'method' => 'delete', 'class' => 'form-delete')) }}
-                            {{ Form::submit('Excluir', array('class' => 'btn btn-danger btn-sm col-md-offset-1 col-md-10')) }}
-                        {{ Form::close() }}
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    @include('.subject.helper._actions')
    
     <h2>#{{ $subject->id }} - {{ $subject->name }}</h2>
-    <h4>Disciplina atualmente disponível no {{ $subject->semester }}º período/ano do curso de {{ $subject->course->name }}</h4> 
-    
-    <div class="panel panel-warning">
-        <div class="panel-heading">
-            <h3 class="panel-title">Informações de Manutenção</h3>
-        </div>
-        <div class="panel-body">
-            <p>Disciplina criada em: <strong>{{ date_format($subject->created_at, 'd/m/Y') }}</strong> às <strong>{{ date_format($subject->created_at, 'H:i:s') }}</strong></p>
-            <p>Dados Atualizados pela última vez em: <strong>{{ date_format($subject->updated_at, 'd/m/Y') }}</strong> às <strong>{{ date_format($subject->updated_at, 'H:i:s') }}</strong></p>
-        </div>
-    </div>
-</div>
+    <h5>Disciplina atualmente disponível no {{ $subject->semester }}º período/ano do curso de {{ $subject->course->name }}</h5>
 
-<script>
-    $(document).on('submit', '.form-delete', function() {
-        return confirm('Tem certeza que deseja excluir essa disciplina?');
-    });
-</script>
+    <div class="dynamic-content">
+        @if(count($subject->users) == 0)
+            <div class="bg-danger">
+                <p><strong>NOTA: </strong>Essa disciplina ainda não possui nenhum aluno matriculado nesse período/ano. Para matricular um aluno, basta acessar o menu de <span class="bg-danger-invert">Ações</span> > <span class="bg-danger-invert">Matricular Aluno</span>.</p>
+            </div>
+        @else
+
+            <h3 class="optional-slide">
+                Alunos matriculados em {{ $subject->name }} em {{ $subject->users[0]->pivot->year_semester }}
+                <button class="btn btn-link"><span class="glyphicon glyphicon-chevron-down"></span></button>
+            </h3>
+
+            <div class="optional optional-hide">
+                <table class="table table-condensed table-hover">
+                    <thead>
+                        <tr>
+                            <td>Nome</td>
+                            <td>E-mail</td>
+                            <td>Ano de Ingresso</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($subject->users as $user)
+                            <tr>
+                                <td><span class="glyphicon glyphicon-link"></span> {{ link_to_route('user.show', $user->name, $user->id) }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->ingress_year }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        @endif
+    </div>
+
+    <hr>
+
+    @include('.subject.helper._maintenance')
+</div>
 @endsection

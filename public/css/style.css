@@ -68,17 +68,20 @@ h2, h4 {
     margin-top: 15px;
 }
 
-.bg-danger {
-    padding: 20px 30px;
-}
-
 .panel, .disciplinas {
     clear: both;
 }
 
 .bg-danger {
+    padding: 20px 30px;
     background-color: #f4645f;
     color: #fff;
+}
+
+.bg-danger-invert {
+    background-color: #fff;
+    color: #f4645f;
+    padding: 0 5px;
 }
 
 /** OPTIONAL CONTENT **/
@@ -86,7 +89,7 @@ h2, h4 {
     cursor: pointer;
 }
 
-.optional {
+.optional-hide {
     display: none;
 }
 /** FIM DO OPTIONAL CONTENT **/

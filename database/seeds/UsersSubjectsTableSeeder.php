@@ -15,12 +15,12 @@ class UsersSubjectsTableSeeder extends Seeder
     {
         DB::table('user_subjects')->truncate();
         
-        for($i = 0; $i < 20; $i++)
+        for($i = 0; $i < 100; $i++)
         {
             while(true)
             {
                 $user = User::all()->random();
-                if($user->type == 1)
+                if($user->type != 3)
                 {
                     break;
                 }
@@ -35,7 +35,7 @@ class UsersSubjectsTableSeeder extends Seeder
                 }
             }
             
-            $user->subjects()->attach($subject->id, ['year_semester' => rand(2011, 2016) . '/' . rand(1, 2)]);
+            $user->subjects()->attach($subject->id, ['year_semester' => rand(2015, 2016) . '/' . rand(1, 2)]);
         }
     }
 }

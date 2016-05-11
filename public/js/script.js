@@ -28,14 +28,14 @@ function changePropOnCourseSelect(value)
     }
 }
 
-$('.user-type').on('change', function()
-{
-    changePropOnCourseSelect(this.value);
-});
-
 $(window).on('load', function() 
 {
     changePropOnCourseSelect($('.user-type').val());
+});
+
+$('.user-type').on('change', function()
+{
+    changePropOnCourseSelect(this.value);
 });
 
 /*
