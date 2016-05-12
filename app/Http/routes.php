@@ -25,6 +25,8 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::resource('subject.project', 'ProjectController');
 
+    Route::resource('subject.project.file', 'ProjectFileController');
+
     Route::group(['prefix' => 'subject'], function() {
         Route::get      ('{id?}/create',                                ['uses' => 'SubjectController@create',      'as' => 'course.subject.create']);
         Route::get      ('{id}/all/{teacher?}',                         ['uses' => 'SubjectController@all',         'as' => 'subject.all']);

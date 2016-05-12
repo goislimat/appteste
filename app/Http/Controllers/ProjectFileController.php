@@ -5,9 +5,24 @@ namespace Projeto\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Projeto\Http\Requests;
+use Projeto\Services\ProjectFileService;
 
-class ProjecFileController extends Controller
+class ProjectFileController extends Controller
 {
+    /**
+     * @var ProjectFileService
+     */
+    private $service;
+
+    /**
+     * ProjectFileController constructor.
+     * @param ProjectFileService $service
+     */
+    public function __construct(ProjectFileService $service)
+    {
+        $this->service = $service;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -34,9 +49,20 @@ class ProjecFileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $subjectId, $projectId)
     {
-        //
+        //return date('Y') . date('m') . date('d') . date('G') . date('i') . date('s');
+
+        $data = [
+            'file' => $request->file('project_file'),
+            'name' => explode('.', $request->file('project_file')->getClientOriginalName())[0],
+            'project_id' => $projectId,
+            'extension' => $request->file('project_file')->getClientOriginalExtension(),
+        ];
+
+        $this->service->store($data);
+
+        return redirect()->route('subject.project.show', array($subjectId, $projectId));
     }
 
     /**

@@ -68,7 +68,7 @@ h2, h4 {
     margin-top: 15px;
 }
 
-.panel, .disciplinas {
+.panel, .disciplinas, .divider, .clearfix {
     clear: both;
 }
 
@@ -82,10 +82,6 @@ h2, h4 {
     background-color: #fff;
     color: #f4645f;
     padding: 3px 5px;
-}
-
-.divider {
-    clear: both;
 }
 
 .cke_top, .cke_bottom {

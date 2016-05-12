@@ -46,6 +46,10 @@ $(document).on('submit', '.form-delete', function() {
     return confirm('Tem certeza que deseja excluir esse item?');
 });
 
+$(document).on('submit', '.form-project-file', function() {
+    return confirm('Confirmar envio de trabalho?');
+});
+
 //Definições de máscara
 $(document).ready(function() {
     $('.time').mask('00:00:00');

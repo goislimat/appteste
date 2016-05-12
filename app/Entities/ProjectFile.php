@@ -19,22 +19,22 @@ class ProjectFile extends Model implements Transformable
 	];
 
 	/**
-	* Get the project for this project file
-	*
-	* @param 
-	* return Project::class
-	*/
+	 * Get the project for this project file
+	 *
+	 * @param
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
 	public function project()
 	{
 		return $this->belongsTo(Project::class);
 	}
-	
+
 	/**
-	* Get the users array for this project file
-	*
-	* @param 
-	* return User::class
-	*/
+	 * Get the users array for this project file
+	 *
+	 * @param
+	 * @return $this
+	 */
 	public function users()
 	{
 		return $this->belongsToMany(User::class, 'submissions', 'file_id', 'user_id')->withPivot('protocol_number');
