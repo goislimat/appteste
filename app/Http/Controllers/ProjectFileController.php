@@ -24,89 +24,30 @@ class ProjectFileController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $subjectId
+     * @param $projectId
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function index()
+    public function add(Request $request, $subjectId, $projectId)
     {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+        $file = $request->file('project_file');
+        $extension = $file->getClientOriginalExtension();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, $subjectId, $projectId)
-    {
-        //return date('Y') . date('m') . date('d') . date('G') . date('i') . date('s');
-
-        $data = [
-            'file' => $request->file('project_file'),
-            'name' => explode('.', $request->file('project_file')->getClientOriginalName())[0],
-            'project_id' => $projectId,
-            'extension' => $request->file('project_file')->getClientOriginalExtension(),
-        ];
-
-        $this->service->store($data);
+        $this->service->add($file, $extension, $projectId);
 
         return redirect()->route('subject.project.show', array($subjectId, $projectId));
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $subjectId
+     * @param $projectId
+     * @param $filename
+     * @return $this
      */
-    public function show($id)
+    public function get($subjectId, $projectId, $filename)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return $this->service->get($filename);
     }
 }

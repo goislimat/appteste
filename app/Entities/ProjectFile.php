@@ -14,8 +14,9 @@ class ProjectFile extends Model implements Transformable
 
     protected $fillable = [
 		'project_id',
-		'name',
-		'extension',
+		'filename',
+		'mime',
+		'original_filename'
 	];
 
 	/**

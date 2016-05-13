@@ -5,9 +5,11 @@ namespace Projeto\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Projeto\Http\Requests;
+use Projeto\Repositories\ProjectFileRepository;
 use Projeto\Repositories\ProjectRepository;
 use Projeto\Repositories\SubjectRepository;
 use Projeto\Services\ProjectService;
+use DB;
 
 class ProjectController extends Controller
 {
@@ -87,8 +89,17 @@ class ProjectController extends Controller
     public function show($subjectId, $id)
     {
         $project = $this->repository->find($id);
+
+        $students = DB::table('projects')
+                ->join('project_files', 'projects.id', '=', 'project_files.project_id')
+                ->join('submissions', 'project_files.id', '=', 'submissions.file_id')
+                ->join('users', 'submissions.user_id', '=', 'users.id')
+                ->where('projects.id', '=', $id)
+                ->select('users.name', 'project_files.updated_at', 'project_files.filename')->get();
+
+        //$files = $this->fileRepository->findWhere('')
         
-        return view('project.show', compact('project'));
+        return view('project.show', compact('project', 'students'));
     }
 
     /**

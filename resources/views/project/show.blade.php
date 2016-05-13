@@ -39,7 +39,13 @@
                 </tr>
             </thead>
             <tbody>
-
+                @foreach($students as $student)
+                    <tr>
+                        <td>{{ $student->name }}</td>
+                        <td>{{ $student->updated_at }}</td>
+                        <td>{{ link_to_route('getfile', 'Download', array($project->subject_id, $project->id, $student->filename)) }}</td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
@@ -47,7 +53,7 @@
     <hr>
 
     <div class="well well-sm">
-        {{ Form::open(array('route' => array('subject.project.file.store', $project->subject->id, $project->id), 'method' => 'post', 'files' => true, 'class' => 'form-project-file')) }}
+        {{ Form::open(array('route' => array('addfile', $project->subject_id, $project->id), 'method' => 'post', 'files' => true, 'class' => 'form-project-file')) }}
             <button class="btn btn-default">
                 <span class="glyphicon glyphicon-upload"></span> Enviar Trabalho
             </button>

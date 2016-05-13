@@ -25,16 +25,20 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::resource('subject.project', 'ProjectController');
 
-    Route::resource('subject.project.file', 'ProjectFileController');
+    //Route::resource('subject.project.file', 'ProjectFileController');
 
     Route::group(['prefix' => 'subject'], function() {
-        Route::get      ('{id?}/create',                                ['uses' => 'SubjectController@create',      'as' => 'course.subject.create']);
-        Route::get      ('{id}/all/{teacher?}',                         ['uses' => 'SubjectController@all',         'as' => 'subject.all']);
+        Route::get      ('{id?}/create',                                    ['uses' => 'SubjectController@create',      'as' => 'course.subject.create']);
+        Route::get      ('{id}/all/{teacher?}',                             ['uses' => 'SubjectController@all',         'as' => 'subject.all']);
 
-        Route::get      ('{id}/enroll',                                 ['uses' => 'EnrollController@create',       'as' => 'enroll.new']);
-        Route::post     ('enroll',                                      ['uses' => 'EnrollController@store',        'as' => 'enroll.store']);
-        Route::get      ('{id}/new/teacher',                            ['uses' => 'EnrollController@newTeacher',   'as' => 'enroll.new.teacher']);
-        Route::delete   ('{subjectId}/user/{userId}/{yearSemester}',    ['uses' => 'EnrollController@destroy',      'as' => 'enroll.destroy']);
+        Route::get      ('{id}/enroll',                                     ['uses' => 'EnrollController@create',       'as' => 'enroll.new']);
+        Route::post     ('enroll',                                          ['uses' => 'EnrollController@store',        'as' => 'enroll.store']);
+        Route::get      ('{id}/new/teacher',                                ['uses' => 'EnrollController@newTeacher',   'as' => 'enroll.new.teacher']);
+        Route::delete   ('{subjectId}/user/{userId}/{yearSemester}',        ['uses' => 'EnrollController@destroy',      'as' => 'enroll.destroy']);
+
+        //Route::get      ('{subject}/project/{project}/file', 'FileEntryController@index');
+        Route::get      ('{subject}/project/{project}/file/get/{filename}', ['uses' => 'ProjectFileController@get',     'as' => 'getfile']);
+        Route::post     ('{subject}/project/{project}/file/add',            ['uses' => 'ProjectFileController@add',     'as' => 'addfile']);
     });
 
 
